@@ -1,0 +1,15 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/departments", "destination": "/departments.html" },
+    { "source": "/events", "destination": "/events.html" },
+    { "source": "/newsletters", "destination": "/newsletters.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/alstar", "destination": "/alstar.html" },
+    { "source": "/alstar/about", "destination": "/alstar/about.html" },
+    { "source": "/alstar/tracker", "destination": "/alstar/tracker.html" },
+    { "source": "/alstar/calendar", "destination": "/alstar/calendar.html" }
+  ]
+}

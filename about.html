@@ -65,6 +65,11 @@
             border-bottom: 2px solid #d1d5db;
         }
         .border-t-custom { border-top: 2px solid #d1d5db; }
+
+        /* Mobile Menu Toggle Logic */
+        #menu-toggle:checked ~ #mobile-menu {
+            display: flex;
+        }
     </style>
 </head>
 <body class="antialiased bg-white">
@@ -88,17 +93,37 @@
                     <a href="https://alevelalstar.vercel.app/" target="_blank" class="nav-link">ALSTAR</a>
                     <a href="https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf" target="_blank" class="nav-link">Handbook</a>
                 </div>
+
+                <div class="lg:hidden flex items-center">
+                    <input type="checkbox" id="menu-toggle" class="hidden">
+                    <label for="menu-toggle" class="cursor-pointer">
+                        <svg class="w-8 h-8 primary-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </label>
+
+                    <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-white border-b-custom flex-col p-6 space-y-4 shadow-lg">
+                        <a href="/" class="nav-link w-fit">Home</a>
+                        <a href="/about" class="nav-link primary-maroon font-bold w-fit">About Us</a>
+                        <a href="/departments" class="nav-link w-fit">Departments</a>
+                        <a href="/events" class="nav-link w-fit">Events</a>
+                        <a href="/newsletters" class="nav-link w-fit">Newsletters</a>
+                        <a href="/contact" class="nav-link w-fit">Get In Touch</a>
+                        <a href="https://alevelalstar.vercel.app/" target="_blank" class="nav-link w-fit">ALSTAR</a>
+                        <a href="https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf" target="_blank" class="nav-link w-fit">Handbook</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
     <main>
-        <section class="py-16 border-b-custom">
+        <section class="py-12 lg:py-16 border-b-custom">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <div class="flex flex-col items-center text-center">
                     <span class="primary-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Established 20XX</span>
                     
-                    <h1 class="text-5xl uppercase md:text-5xl font-black text-main tracking-tight">
+                    <h1 class="text-4xl md:text-5xl font-black text-main tracking-tight uppercase">
                         About Us
                     </h1>
                     
@@ -111,23 +136,23 @@
             </div>
         </section>
 
-        <section class="py-16 border-b-custom">
+        <section class="py-12 lg:py-16 border-b-custom">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                <div class="bg-maroon rounded-2xl p-10 md:p-14 text-white">
-                    <h3 class="text-2xl font-bold tracking-tight mb-10">Our Mission</h3>
-                    <p class="text-red-50 text-lg md:text-xl leading-relaxed text-justify">
+                <div class="bg-maroon rounded-2xl p-8 md:p-14 text-white">
+                    <h3 class="text-2xl font-bold tracking-tight mb-6 md:mb-10">Our Mission</h3>
+                    <p class="text-red-50 text-base md:text-xl leading-relaxed text-justify">
                         To enhance the student experience by providing essential services, fostering engagement, and ensuring a supportive environment. We serve as an active bridge between students and the college administration. 
                     </p>
-                    <p class="text-red-50 text-lg md:text-xl leading-relaxed text-justify mt-8">
+                    <p class="text-red-50 text-base md:text-xl leading-relaxed text-justify mt-6 md:mt-8">
                         Through strategic collaboration with various councils and societies, we create inclusive experiences that foster a strong sense of belonging and meaningful community engagement throughout the academic year.
                     </p>
                 </div>
             </div>
         </section>
 
-        <section class="py-16">
+        <section class="py-12 lg:py-16">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     <div class="p-8 rounded-xl border-custom bg-white">
                         <div class="w-10 h-10 bg-maroon/5 rounded-lg flex items-center justify-center mb-6">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 primary-maroon" fill="none" viewBox="0 0 24 24" stroke="currentColor">

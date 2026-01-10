@@ -65,6 +65,11 @@
             border-bottom: 2px solid #d1d5db;
         }
         .border-t-custom { border-top: 2px solid #d1d5db; }
+
+        /* Mobile Menu Toggle Logic */
+        #menu-toggle:checked ~ #mobile-menu {
+            display: flex;
+        }
     </style>
 </head>
 <body class="antialiased bg-white">
@@ -88,17 +93,37 @@
                     <a href="https://alevelalstar.vercel.app/" target="_blank" class="nav-link">ALSTAR</a>
                     <a href="https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf" target="_blank" class="nav-link">Handbook</a>
                 </div>
+
+                <div class="lg:hidden flex items-center">
+                    <input type="checkbox" id="menu-toggle" class="hidden">
+                    <label for="menu-toggle" class="cursor-pointer">
+                        <svg class="w-8 h-8 primary-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </label>
+
+                    <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-white border-b-custom flex-col p-6 space-y-4 shadow-lg">
+                        <a href="/" class="nav-link w-fit">Home</a>
+                        <a href="/about" class="nav-link w-fit">About Us</a>
+                        <a href="/departments" class="nav-link primary-maroon font-bold w-fit">Departments</a>
+                        <a href="/events" class="nav-link w-fit">Events</a>
+                        <a href="/newsletters" class="nav-link w-fit">Newsletters</a>
+                        <a href="/contact" class="nav-link w-fit">Get In Touch</a>
+                        <a href="https://alevelalstar.vercel.app/" target="_blank" class="nav-link w-fit">ALSTAR</a>
+                        <a href="https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf" target="_blank" class="nav-link w-fit">Handbook</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
     <main>
-        <section class="py-16 border-b-custom">
+        <section class="py-12 lg:py-16 border-b-custom">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <div class="flex flex-col items-center text-center">
                     <span class="primary-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Core Structure</span>
                     
-                    <h1 class="text-5xl md:text-5xl font-black text-main tracking-tight uppercase">
+                    <h1 class="text-4xl md:text-5xl font-black text-main tracking-tight uppercase">
                         Departments
                     </h1>
                     
@@ -111,13 +136,13 @@
             </div>
         </section>
 
-        <section class="py-16">
+        <section class="py-12 lg:py-16">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                     
                     <div class="border-custom bg-white overflow-hidden rounded-2xl group">
-                        <img src="images/ld.avif" alt="Leadership Development" class="w-full h-72 object-cover">
-                        <div class="p-8">
+                        <img src="images/ld.avif" alt="Leadership Development" class="w-full h-56 md:h-72 object-cover">
+                        <div class="p-6 md:p-8">
                             <h3 class="text-2xl font-bold mb-4">Leadership Development</h3>
                             <p class="leading-relaxed text-base text-main text-justify">
                                 Leadership Development promotes soft skills and sports to foster interpersonal growth and ensure all A-Level students develop personally and professionally.
@@ -126,8 +151,8 @@
                     </div>
 
                     <div class="border-custom bg-white overflow-hidden rounded-2xl group">
-                        <img src="images/comserve.avif" alt="Community Service" class="w-full h-72 object-cover">
-                        <div class="p-8">
+                        <img src="images/comserve.avif" alt="Community Service" class="w-full h-56 md:h-72 object-cover">
+                        <div class="p-6 md:p-8">
                             <h3 class="text-2xl font-bold mb-4">Community Service</h3>
                             <p class="leading-relaxed text-base text-main text-justify">
                                 Community Service, or COMSERVE for short, organises events for our members that focus on charitable, environmental, or community-orientated work.
@@ -136,8 +161,8 @@
                     </div>
 
                     <div class="border-custom bg-white overflow-hidden rounded-2xl group">
-                        <img src="images/sw.avif" alt="Student Welfare" class="w-full h-72 object-cover">
-                        <div class="p-8">
+                        <img src="images/sw.avif" alt="Student Welfare" class="w-full h-56 md:h-72 object-cover">
+                        <div class="p-6 md:p-8">
                             <h3 class="text-2xl font-bold mb-4">Student Welfare</h3>
                             <p class="leading-relaxed text-base text-main text-justify">
                                 Student Welfare strives to foster a supportive and holistic environment within the community by curating initiatives that enhance students’ mental, social, and academic well-being.
@@ -146,8 +171,8 @@
                     </div>
 
                     <div class="border-custom bg-white overflow-hidden rounded-2xl group">
-                        <img src="images/pr.avif" alt="Public Relations" class="w-full h-72 object-cover">
-                        <div class="p-8">
+                        <img src="images/pr.avif" alt="Public Relations" class="w-full h-56 md:h-72 object-cover">
+                        <div class="p-6 md:p-8">
                             <h3 class="text-2xl font-bold mb-4">Public Relations</h3>
                             <p class="leading-relaxed text-base text-main text-justify">
                                 Public Relations focuses on creating creative and engaging content to communicate effectively and build a strong, connected A-Level community.

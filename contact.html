@@ -62,6 +62,11 @@
         .border-custom { border: 2px solid #d1d5db; }
         .border-b-custom { border-bottom: 2px solid #d1d5db; }
         .border-t-custom { border-top: 2px solid #d1d5db; }
+
+        /* Mobile Menu Logic */
+        #menu-toggle:checked ~ #mobile-menu {
+            display: flex;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -85,17 +90,37 @@
                     <a href="https://alevelalstar.vercel.app/" target="_blank" class="nav-link">ALSTAR</a>
                     <a href="https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf" target="_blank" class="nav-link">Handbook</a>
                 </div>
+
+                <div class="lg:hidden flex items-center">
+                    <input type="checkbox" id="menu-toggle" class="hidden">
+                    <label for="menu-toggle" class="cursor-pointer">
+                        <svg class="w-8 h-8 primary-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </label>
+
+                    <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-white border-b-custom flex-col p-6 space-y-4 shadow-lg">
+                        <a href="/" class="nav-link w-fit">Home</a>
+                        <a href="/about" class="nav-link w-fit">About Us</a>
+                        <a href="/departments" class="nav-link w-fit">Departments</a>
+                        <a href="/events" class="nav-link w-fit">Events</a>
+                        <a href="/newsletters" class="nav-link w-fit">Newsletters</a>
+                        <a href="/contact" class="nav-link primary-maroon font-bold w-fit">Get In Touch</a>
+                        <a href="https://alevelalstar.vercel.app/" target="_blank" class="nav-link w-fit">ALSTAR</a>
+                        <a href="https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf" target="_blank" class="nav-link w-fit">Handbook</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
     <main>
-        <section class="py-16 border-b-custom">
+        <section class="py-12 lg:py-16 border-b-custom">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <div class="flex flex-col items-center text-center">
                     <span class="primary-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Contact Us</span>
                     
-                    <h1 class="text-5xl md:text-5xl font-black text-main tracking-tight uppercase">
+                    <h1 class="text-4xl md:text-5xl font-black text-main tracking-tight uppercase">
                         Get In Touch
                     </h1>
                     
@@ -108,16 +133,16 @@
             </div>
         </section>
 
-        <section class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <section class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
                 <div class="border-custom bg-white rounded-3xl overflow-hidden">
-                    <div class="p-10 text-center">
+                    <div class="p-8 lg:p-10 text-center h-full flex flex-col">
                         <div class="mb-6 flex justify-center">
                            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" class="w-12 h-12">
                         </div>
                         <h3 class="text-2xl font-bold mb-4">Instagram</h3>
-                        <p class="leading-relaxed text-base text-main mb-8">
+                        <p class="leading-relaxed text-base text-main mb-8 flex-grow">
                             Follow us for live updates, event highlights and photo dumps.
                         </p>
                         <a href="https://instagram.com/alevel.alsco/" target="_blank" class="btn-modern btn-maroon w-full">@alevel.alsco</a>
@@ -125,25 +150,25 @@
                 </div>
 
                 <div class="border-custom bg-white rounded-3xl overflow-hidden">
-                    <div class="p-10 text-center">
+                    <div class="p-8 lg:p-10 text-center h-full flex flex-col">
                         <div class="mb-6 flex justify-center">
                             <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" class="w-12 h-12">
                         </div>
                         <h3 class="text-2xl font-bold mb-4">Email</h3>
-                        <p class="leading-relaxed text-base text-main mb-8">
+                        <p class="leading-relaxed text-base text-main mb-8 flex-grow">
                             For official inquiries, collaborations and student feedback.
                         </p>
-                        <a href="mailto:alevel.alsco@gmail.com" class="btn-modern btn-maroon w-full">alevel.alsco@gmail.com</a>
+                        <a href="mailto:alevel.alsco@gmail.com" class="btn-modern btn-maroon w-full overflow-hidden text-ellipsis whitespace-nowrap">alevel.alsco@gmail.com</a>
                     </div>
                 </div>
 
                 <div class="border-custom bg-white rounded-3xl overflow-hidden">
-                    <div class="p-10 text-center">
+                    <div class="p-8 lg:p-10 text-center h-full flex flex-col">
                         <div class="mb-6 flex justify-center">
                             <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" class="w-12 h-12">
                         </div>
                         <h3 class="text-2xl font-bold mb-4">TikTok</h3>
-                        <p class="leading-relaxed text-base text-main mb-8">
+                        <p class="leading-relaxed text-base text-main mb-8 flex-grow">
                             See the fun side of ALSCO with behind-the-scenes and trending content.
                         </p>
                         <a href="https://tiktok.com/@alevel.alsco" target="_blank" class="btn-modern btn-maroon w-full">@alevel.alsco</a>

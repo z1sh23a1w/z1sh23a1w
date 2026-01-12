@@ -6,6 +6,7 @@
     { "source": "/departments", "destination": "/departments.html" },
     { "source": "/events", "destination": "/events.html" },
     { "source": "/newsletters", "destination": "/newsletters.html" },
-    { "source": "/contact", "destination": "/contact.html" }
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/alstar", "destination": "/alstar.html" }
   ]
 }

@@ -70,64 +70,61 @@
     </nav>
 
     <div id="menu-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-        <div class="bg-white w-full max-w-5xl rounded-[2.5rem] shadow-2xl overflow-hidden border border-black/5">
-            <div class="p-8 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-                <h3 class="text-xl font-black uppercase tracking-tighter text-[#88113b]">Site Directory</h3>
-                <button onclick="toggleModal()" class="text-gray-400 hover:text-black transition-colors outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-            
-            <div class="p-10 grid grid-cols-5 gap-8">
-                <div class="space-y-4">
-                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 1</h4>
-                    <ul class="space-y-2 text-sm font-bold">
-                        <li><a href="#" class="hover:text-[#88113b]">Link 01</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 02</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 03</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 04</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 05</a></li>
-                    </ul>
+        <div class="bg-white w-full max-w-6xl rounded-[2.5rem] shadow-2xl overflow-hidden border border-black/5">
+            <div class="p-10">
+                <div class="flex justify-between items-center mb-10">
+                    <h3 class="text-xl font-black uppercase tracking-tighter text-[#88113b]">Site Directory</h3>
+                    <button onclick="toggleModal()" class="text-gray-400 hover:text-black transition-colors outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
                 </div>
-                <div class="space-y-4">
-                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 2</h4>
-                    <ul class="space-y-2 text-sm font-bold">
-                        <li><a href="#" class="hover:text-[#88113b]">Link 06</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 07</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 08</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 09</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 10</a></li>
-                    </ul>
-                </div>
-                <div class="space-y-4">
-                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 3</h4>
-                    <ul class="space-y-2 text-sm font-bold">
-                        <li><a href="#" class="hover:text-[#88113b]">Link 11</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 12</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 13</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 14</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 15</a></li>
-                    </ul>
-                </div>
-                <div class="space-y-4">
-                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 4</h4>
-                    <ul class="space-y-2 text-sm font-bold">
-                        <li><a href="#" class="hover:text-[#88113b]">Link 16</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 17</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 18</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 19</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 20</a></li>
-                    </ul>
-                </div>
-                <div class="space-y-4">
-                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 5</h4>
-                    <ul class="space-y-2 text-sm font-bold">
-                        <li><a href="#" class="hover:text-[#88113b]">Link 21</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 22</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 23</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 24</a></li>
-                        <li><a href="#" class="hover:text-[#88113b]">Link 25</a></li>
-                    </ul>
+
+                <div class="grid grid-cols-5 gap-x-8 gap-y-12">
+                    <div class="space-y-5">
+                        <h4 class="font-black text-[11px] uppercase tracking-[0.2em] text-[#88113b]">About ALSCO</h4>
+                        <ul class="space-y-3 text-sm font-bold tracking-tight">
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Become an ALSCO</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Who We Are</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Meet the Team</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Our Alumni</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-5">
+                        <h4 class="font-black text-[11px] uppercase tracking-[0.2em] text-[#88113b]">Departments</h4>
+                        <ul class="space-y-3 text-sm font-bold tracking-tight">
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Leadership Development</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Community Service</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Student Welfare</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Public Relations</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-5">
+                        <h4 class="font-black text-[11px] uppercase tracking-[0.2em] text-[#88113b]">Navigation</h4>
+                        <ul class="space-y-3 text-sm font-bold tracking-tight">
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Ongoing Events</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Latest Newsletter</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Past Events</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Past Newsletters</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-5">
+                        <h4 class="font-black text-[11px] uppercase tracking-[0.2em] text-[#88113b]">ALSTAR</h4>
+                        <ul class="space-y-3 text-sm font-bold tracking-tight">
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Become an ALSTAR</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">About ALSTAR</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">ALSTAR First Event</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">ALSTAR Points Tracker</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-5">
+                        <h4 class="font-black text-[11px] uppercase tracking-[0.2em] text-[#88113b]">Resources</h4>
+                        <ul class="space-y-3 text-sm font-bold tracking-tight">
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Student Handbook</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">Get in Touch</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">ALSCO Calendar</a></li>
+                            <li><a href="#" class="hover:text-[#88113b] whitespace-nowrap">ALSTAR Calendar</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,8 +144,8 @@
                 <p class="text-white/90 text-lg font-medium leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 
                 <div class="flex flex-wrap gap-5 pt-4">
-                    <a href="index.html" class="bg-[#e11d48] text-white px-9 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest border border-[#e11d48] hover:bg-white hover:text-[#e11d48] transition-all active:scale-95 shadow-lg shadow-[#e11d48]/30">Primary Action</a>
-                    <a href="index.html" class="bg-white/10 backdrop-blur-md text-white px-9 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black hover:border-white transition-all active:scale-95">Learn More</a>
+                    <a href="#" class="bg-[#e11d48] text-white px-9 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest border border-[#e11d48] hover:bg-white hover:text-[#e11d48] transition-all active:scale-95 shadow-lg shadow-[#e11d48]/30">Primary Action</a>
+                    <a href="#" class="bg-white/10 backdrop-blur-md text-white px-9 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black hover:border-white transition-all active:scale-95">Learn More</a>
                 </div>
             </div>
         </section>
@@ -160,20 +157,17 @@
 
         function toggleModal() {
             modal.classList.toggle('hidden');
-            // When closing, remove focus from the button to prevent the black ring
             if (modal.classList.contains('hidden')) {
                 viewPagesBtn.blur();
             }
         }
 
-        // Close modal when clicking outside the white box
         window.onclick = function(event) {
             if (event.target == modal) {
                 toggleModal();
             }
         }
 
-        // Close modal when pressing "Escape" key
         window.addEventListener('keydown', function(event) {
             if (event.key === "Escape" && !modal.classList.contains('hidden')) {
                 toggleModal();

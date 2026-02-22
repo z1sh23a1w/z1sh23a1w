@@ -5,189 +5,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunway A-Level Student Committee</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
 
-        /* Mobile Blocker Logic */
-        #mobile-blocker {
-            display: none;
+        /* Simplified Mobile Blocker */
+        @media (min-width: 1025px) {
+            #mobile-blocker { display: none !important; }
         }
-
         @media (max-width: 1024px) {
-            /* Strip away existing sections on mobile */
-            nav, main {
-                display: none !important;
-            }
-
-            /* Display pure black/white blocker */
+            nav, main, #menu-modal { display: none !important; }
             #mobile-blocker {
                 display: flex;
                 position: fixed;
                 inset: 0;
-                background-color: #000000;
-                color: #FFFFFF;
+                background: #000;
+                color: #fff;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 text-align: center;
                 padding: 2rem;
-                z-index: 9999;
+                z-index: 50;
             }
+        }
+
+        /* Modal Animation */
+        #menu-modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #menu-modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+            display: flex; /* Keep flex but invisible for transition */
         }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-white text-black">
 
     <div id="mobile-blocker">
-        <div class="max-w-md space-y-4">
-            <div class="flex justify-center">
-                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-            </div>
-            
-            <div class="space-y-4">
-                <h1 class="text-2xl font-black uppercase tracking-tighter">PC or Tablet Only</h1>
-                <p class="text-sm font-medium leading-relaxed opacity-80">
-                    I'm working on the mobile view LOL
-                </p>
-            </div>
-        </div>
+        <svg class="w-16 h-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+        <h1 class="text-2xl font-black uppercase tracking-tighter">View the site with a computer</h1>
+        <p class="text-sm opacity-80 mt-2">Mobile support is currently in development.</p>
     </div>
 
-    <nav class="bg-white border-b border-black sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                
-                <div class="flex-shrink-0">
-                    <a class='text-3xl font-black tracking-tighter text-[#88113b]' href='/'>
-                        LOGO
-                    </a>
-                </div>
+    <nav class="bg-white sticky top-0 z-40 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.1)]">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 flex justify-between h-20 items-center">
+            <a class="text-3xl font-black tracking-tighter text-[#88113b]" href="index.html">LOGO</a>
 
-                <div class="flex items-center space-x-12 h-full">
-                    
-                    <div class="group h-full flex items-center">
-                        <button class="flex items-center text-sm font-bold text-black group-hover:text-[#88113b] transition-colors gap-1 uppercase tracking-widest">
-                            View Pages
-                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
+            <div class="flex items-center space-x-12">
+                <button id="viewPagesBtn" onclick="toggleModal()" class="group flex items-center text-sm font-bold text-[#000000] hover:text-[#88113b] gap-1 uppercase tracking-widest outline-none focus:outline-none">
+                    View Pages
+                    <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
 
-                        <div class="absolute top-full left-0 w-full bg-white shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-0 group-hover:translate-y-0 z-40 border-t border-black">
-                            <div class="max-w-7xl mx-auto grid grid-cols-5 gap-8 px-4 lg:px-8 py-12">
-                                
-                                <div class="text-left">
-                                    <h3 class="text-[#88113b] text-sm font-bold uppercase tracking-widest">About Us</h3>
-                                    <div class="py-4"></div>
-                                    <ul class="space-y-4">
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">What is ALSCO</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Our Affiliate</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Our History</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Meet the Team</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Our Alumni</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="text-left">
-                                    <h3 class="text-[#88113b] text-sm font-bold uppercase tracking-widest">Departments</h3>
-                                    <div class="py-4"></div>
-                                    <ul class="space-y-4">
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Executive Committee</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Leadership Development</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Community Service</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Student Welfare</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Public Relations</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="text-left">
-                                    <h3 class="text-[#88113b] text-sm font-bold uppercase tracking-widest">ALSCO</h3>
-                                    <div class="py-4"></div>
-                                    <ul class="space-y-4">
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Become an ALSCO</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Ongoing Events</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Latest Newsletter</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Past Events</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Past Newsletters</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="text-left">
-                                    <h3 class="text-[#88113b] text-sm font-bold uppercase tracking-widest">ALSTAR</h3>
-                                    <div class="py-4"></div>
-                                    <ul class="space-y-4">
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Become an ALSTAR</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">What is ALSTAR</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">ALSTAR First Event</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">ALSTAR Points Tracker</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">ALSTAR Points Declaration</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="text-left">
-                                    <h3 class="text-[#88113b] text-sm font-bold uppercase tracking-widest">Resources</h3>
-                                    <div class="py-4"></div>
-                                    <ul class="space-y-4">
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Student Handbook</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Common Questions</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">Get In Touch</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">ALSCO Calendar</a></li>
-                                        <li><a href="#" class="text-black hover:underline text-sm font-normal">ALSTAR Calendar</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="bg-[#88113b] text-white px-7 py-3 rounded-xl font-bold text-xs uppercase tracking-widest border border-[#88113b] hover:bg-white hover:text-[#88113b] transition-all active:scale-95">
-                        Search
-                    </button>
-                </div>
-
+                <button class="bg-[#88113b] text-white px-9 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-widest border border-[#88113b] hover:bg-white hover:text-[#88113b] transition-all active:scale-95 shadow-lg shadow-[#88113b]/20">
+                    Search Site
+                </button>
             </div>
         </div>
     </nav>
 
+    <div id="menu-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-white w-full max-w-5xl rounded-[2.5rem] shadow-2xl overflow-hidden border border-black/5">
+            <div class="p-8 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                <h3 class="text-xl font-black uppercase tracking-tighter text-[#88113b]">Site Directory</h3>
+                <button onclick="toggleModal()" class="text-gray-400 hover:text-black transition-colors outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="p-10 grid grid-cols-5 gap-8">
+                <div class="space-y-4">
+                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 1</h4>
+                    <ul class="space-y-2 text-sm font-bold">
+                        <li><a href="#" class="hover:text-[#88113b]">Link 01</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 02</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 03</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 04</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 05</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 2</h4>
+                    <ul class="space-y-2 text-sm font-bold">
+                        <li><a href="#" class="hover:text-[#88113b]">Link 06</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 07</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 08</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 09</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 10</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 3</h4>
+                    <ul class="space-y-2 text-sm font-bold">
+                        <li><a href="#" class="hover:text-[#88113b]">Link 11</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 12</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 13</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 14</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 15</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 4</h4>
+                    <ul class="space-y-2 text-sm font-bold">
+                        <li><a href="#" class="hover:text-[#88113b]">Link 16</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 17</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 18</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 19</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 20</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400">Category 5</h4>
+                    <ul class="space-y-2 text-sm font-bold">
+                        <li><a href="#" class="hover:text-[#88113b]">Link 21</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 22</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 23</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 24</a></li>
+                        <li><a href="#" class="hover:text-[#88113b]">Link 25</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <main class="max-w-7xl mx-auto px-4 lg:px-8 py-16">
-        
-        <section>
-            <div class="relative h-[500px] rounded-[2rem] overflow-hidden shadow-2xl group cursor-pointer border border-black">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=2000" alt="Featured" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+        <section class="relative h-[550px] rounded-[2.5rem] overflow-hidden shadow-2xl group cursor-pointer border border-black/10">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=2000" alt="Featured" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+            
+            <div class="absolute bottom-0 p-12 lg:p-16 w-full max-w-2xl space-y-7">
+                <span class="bg-[#e11d48] text-white px-5 py-2 rounded-lg text-[11px] font-extrabold uppercase tracking-widest inline-block">Announcement</span>
                 
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tighter">Big Announcement Goes Here</h2>
                 
-                <div class="absolute bottom-0 p-10 lg:p-12 w-full">
-                    <div class="max-w-2xl space-y-6">
-                        <div>
-                            <span class="bg-[#e11d48] text-white px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-[0.15em]">Announcement</span>
-                        </div>
-                        
-                        <h2 class="text-3xl lg:text-[2.75rem] font-black text-white leading-tight tracking-tighter">
-                            Big Announcement Goes Here
-                        </h2>
-                        
-                        <p class="text-white text-base lg:text-lg font-medium leading-relaxed">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-4 pt-2">
-                            <button class="bg-[#e11d48] text-white px-7 py-3 rounded-xl font-bold text-xs uppercase tracking-widest border border-[#e11d48] hover:bg-white hover:text-[#e11d48] transition-all active:scale-95">
-                                Button 1
-                            </button>
-                            <button class="bg-white text-black px-7 py-3 rounded-xl font-bold text-xs uppercase tracking-widest border border-black hover:bg-[#e11d48] hover:text-white hover:border-[#e11d48] transition-all active:scale-95">
-                                Button 2
-                            </button>
-                        </div>
-                    </div>
+                <p class="text-white/90 text-lg font-medium leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                
+                <div class="flex flex-wrap gap-5 pt-4">
+                    <a href="index.html" class="bg-[#e11d48] text-white px-9 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest border border-[#e11d48] hover:bg-white hover:text-[#e11d48] transition-all active:scale-95 shadow-lg shadow-[#e11d48]/30">Primary Action</a>
+                    <a href="index.html" class="bg-white/10 backdrop-blur-md text-white px-9 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black hover:border-white transition-all active:scale-95">Learn More</a>
                 </div>
             </div>
         </section>
-
     </main>
 
+    <script>
+        const modal = document.getElementById('menu-modal');
+        const viewPagesBtn = document.getElementById('viewPagesBtn');
+
+        function toggleModal() {
+            modal.classList.toggle('hidden');
+            // When closing, remove focus from the button to prevent the black ring
+            if (modal.classList.contains('hidden')) {
+                viewPagesBtn.blur();
+            }
+        }
+
+        // Close modal when clicking outside the white box
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                toggleModal();
+            }
+        }
+
+        // Close modal when pressing "Escape" key
+        window.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !modal.classList.contains('hidden')) {
+                toggleModal();
+            }
+        });
+    </script>
 </body>
 </html>

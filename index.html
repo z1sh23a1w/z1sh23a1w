@@ -191,9 +191,17 @@
         }
         
         #hero-section {
-            /* Hero specifically adjusted to account for nav height visibility */
             padding-top: 5rem !important;
             padding-bottom: 5rem !important;
+        }
+
+        /* Mobile Menu Drawer Animation */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
         }
     </style>
 </head>
@@ -206,10 +214,11 @@
     </div>
 
     <div id="main-content">
-        <nav class="sticky-nav w-full">
+        <nav class="sticky-nav w-full bg-white">
             <div class="content-container flex items-center justify-between py-7 px-6 lg:px-0">
                 <span class="text-3xl font-extrabold text-[#88113b] tracking-tighter">ALSCO</span>
-                <div class="hidden sm:flex space-x-10">
+                
+                <div class="hidden md:flex space-x-10">
                     <a href="index.html" class="nav-link nav-link-active text-base font-bold transition-colors tracking-tight">Home</a> 
                     <a href="about.html" class="nav-link text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">About Us</a>
                     <a href="events.html" class="nav-link text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">Events</a>
@@ -217,20 +226,37 @@
                     <a href="alstar.html" class="nav-link text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">ALSTAR</a>
                     <a href="contact.html" class="nav-link text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">Contact Us</a>
                 </div>
+
+                <button id="menu-toggle" class="md:hidden p-2 text-[#1a1a1a]">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="fixed inset-0 bg-white z-[2000] flex flex-col p-8 space-y-6 md:hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-3xl font-extrabold text-[#88113b]">ALSCO</span>
+                    <button id="menu-close" class="text-4xl text-[#1a1a1a]">&times;</button>
+                </div>
+                <a href="index.html" class="text-2xl font-bold text-[#88113b]">Home</a>
+                <a href="about.html" class="text-2xl font-bold text-[#1a1a1a]">About Us</a>
+                <a href="events.html" class="text-2xl font-bold text-[#1a1a1a]">Events</a>
+                <a href="publications.html" class="text-2xl font-bold text-[#1a1a1a]">Publications</a>
+                <a href="alstar.html" class="text-2xl font-bold text-[#1a1a1a]">ALSTAR</a>
+                <a href="contact.html" class="text-2xl font-bold text-[#1a1a1a]">Contact Us</a>
             </div>
         </nav>
 
         <section id="hero-section" class="content-container px-6 lg:px-0">
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-                <div id="hero-text" class="lg:w-[50%] flex flex-col justify-center text-left">
+                <div id="hero-text" class="lg:w-[55%] flex flex-col justify-center text-left">
                     <div class="mb-6">
                         <span class="bg-[#88113b] text-white text-[11px] font-black uppercase tracking-[0.15em] px-4 py-1.5 rounded-full shadow-sm">
                             Official Student Body
                         </span>
                     </div>
-                    <h1 class="inline-block text-4xl lg:text-6xl font-black text-[#1a1a1a] mb-6 leading-[1.1] tracking-tight">
+                    <h1 class="text-4xl lg:text-[64px] font-black text-[#1a1a1a] mb-6 leading-[1.05] tracking-tight">
                         Sunway A-Level<br>
-                        <span class="text-[#88113b] whitespace-nowrap">Student Committee</span>
+                        <span class="text-[#88113b]">Student Committee</span>
                     </h1>
                     <p class="text-secondary text-base lg:text-lg mb-10 leading-relaxed font-medium text-justify" style="max-width: 535px;">
                         The official voice for Sunway A-Level students. We bridge administrative gaps while creating a memorable, impactful college experience committee.
@@ -240,7 +266,7 @@
                         <a href="alstar.html" class="pill-button bg-[#1a1a1a] text-white">ALSTAR Dashboard</a>
                     </div>
                 </div>
-                <div class="lg:w-[50%] w-full">
+                <div class="lg:w-[45%] w-full">
                     <div class="relative w-full h-full">
                         <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200" 
                              class="rounded-[2.5rem] shadow-2xl w-full object-cover lg:h-[400px] h-[350px]" 
@@ -347,6 +373,14 @@
     </div>
 
     <script>
+        // Menu Toggle Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => mobileMenu.classList.add('active'));
+        menuClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
+
         // Page Load Logic
         window.addEventListener('load', () => {
             setTimeout(() => {

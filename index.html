@@ -105,7 +105,7 @@
             white-space: nowrap;
             cursor: pointer;
         }
-        .pill-button:hover {
+        .pill-button:hover:not(:disabled) {
             filter: brightness(115%);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -140,7 +140,7 @@
             width: 100%;
         }
 
-        /* FAQ Horizontal Card Styles */
+        /* FAQ Card - Rounded with Navbar Border Style */
         .faq-card {
             background-color: #ffffff;
             border: 1.5px solid rgba(0, 0, 0, 0.3);
@@ -179,7 +179,7 @@
 
         hr.section-divider {
             border: 0;
-            border-top: 1.5px solid rgba(0, 0, 0, 0.1);
+            border-top: 1.5px solid rgba(0, 0, 0, 0.3);
             margin: 0 auto;
             max-width: 1152px;
         }
@@ -395,25 +395,55 @@
         });
 
         const eventsData = [
-            { title: "A-Level Talent Night", date: "APRIL 12, 2026", time: "6:30 PM" },
-            { title: "Academic Marathon", date: "APRIL 20, 2026", time: "10:00 AM" },
-            { title: "Sports Carnival 2026", date: "MAY 05, 2026", time: "8:00 AM" }
+            { 
+                title: "ALSTAR First Event", 
+                date: "April 2026", 
+                time: "", 
+                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500",
+                link: "events.html",
+                disabled: false,
+                badge: "ALSTAR"
+            },
+            { 
+                title: "Little Notes, Big Smiles", 
+                date: "TBC", 
+                time: "", 
+                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500",
+                link: "#",
+                disabled: true,
+                badge: "SW"
+            },
+            { 
+                title: "A Company Visit", 
+                date: "TBC", 
+                time: "", 
+                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500",
+                link: "#",
+                disabled: true,
+                badge: "SW"
+            }
         ];
 
         function createCard(event, index) {
             const card = document.createElement('div');
             card.className = "event-card";
+            const buttonHtml = event.disabled 
+                ? `<button class="pill-button bg-gray-200 text-gray-500 cursor-not-allowed opacity-70" disabled>Coming Soon</button>`
+                : `<a href="${event.link}" class="pill-button bg-[#88113b] text-white">View More</a>`;
+
             card.innerHTML = `
                 <div class="w-full relative h-48 bg-gray-50 rounded-[1.8rem] mb-5 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500" class="w-full h-full object-cover">
-                    <div class="absolute top-3 left-3 bg-[#88113b] text-white text-[11px] font-black px-3 py-1 rounded-full">#${index + 1}</div>
+                    <img src="${event.image}" class="w-full h-full object-cover">
+                    <div class="absolute top-3 left-3 bg-[#88113b] text-white text-[11px] font-black px-3 py-1 rounded-full">${event.badge}</div>
                 </div>
                 <div class="flex items-center justify-center gap-2 mb-2">
                     <span class="text-[12px] font-black text-[#88113b] uppercase tracking-wider">${event.date}</span>
-                    <span class="text-[12px] font-black text-slate-700 uppercase tracking-wider"> • ${event.time}</span>
+                    <span class="text-[12px] font-black text-slate-700 uppercase tracking-wider"> ${event.time}</span>
                 </div>
                 <h3 class="text-2xl font-bold text-[#1a1a1a] mb-4 leading-tight">${event.title}</h3>
-                <div class="mt-auto"><button class="pill-button bg-[#88113b] text-white">Register Interest</button></div>
+                <div class="mt-auto">
+                    ${buttonHtml}
+                </div>
             `;
             return card;
         }

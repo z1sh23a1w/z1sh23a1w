@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Sunway A-Level Student Committee</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader-bar-container {
+            width: 200px;
+            height: 4px;
+            background: #f3f3f3;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loader-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #88113b;
+            animation: load 1s ease-in-out forwards;
+        }
+
+        @keyframes load {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        #main-content {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #ffffff;
+            border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #88113b;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link-active {
+            color: #88113b !important;
+            font-weight: 700;
+        }
+        .nav-link-active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #88113b;
+        }
+
+        .pill-button {
+            transition: all 0.2s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem; 
+            border-radius: 9999px;
+            font-size: 0.875rem; 
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .pill-button:hover:not(:disabled) {
+            filter: brightness(115%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-pill {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1.5px solid rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background-color: transparent;
+            color: #1a1a1a;
+        }
+        .filter-pill:hover {
+            background-color: #fff1f5; 
+            border-color: #88113b;
+            color: #88113b;
+            transform: translateY(-1px);
+        }
+        .filter-pill.active {
+            background-color: #88113b;
+            color: white;
+            border-color: #88113b;
+        }
+
+        .event-card {
+            background-color: #ffffff;
+            border: 1.5px solid rgba(0, 0, 0, 0.3);
+            border-radius: 2.5rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            text-align: center;
+            align-items: center;
+        }
+        .event-card:hover {
+            border-color: #88113b
+        }
+
+        .content-container {
+            max-width: 1152px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        section {
+            padding-top: 5rem !important;
+            padding-bottom: 5rem !important;
+        }
+
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        hr.section-divider {
+            border: 0;
+            border-top: 1.5px solid rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            max-width: 1152px;
+        }
+    </style>
+</head>
+<body> 
+
+    <div id="loading-screen">
+        <div class="loader-bar-container">
+            <div class="loader-bar-fill"></div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <nav class="sticky-nav w-full bg-white">
+            <div class="content-container flex items-center justify-between py-7 px-6 lg:px-0">
+                <span class="text-3xl font-extrabold text-[#88113b] tracking-tighter">ALSCO</span>
+                
+                <div class="hidden md:flex space-x-10">
+                    <a href="index.html" class="nav-link text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">Home</a> 
+                    <a href="about.html" class="nav-link text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">About Us</a>
+                    <a href="events.html" class="nav-link nav-link-active text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">Events</a>
+                    <a href="publications.html" class="nav-link text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">Publications</a>
+                    <a href="alstar.html" class="nav-link text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">ALSTAR</a>
+                    <a href="contact.html" class="nav-link text-[#1a1a1a] text-base font-bold transition-colors tracking-tight">Contact Us</a>
+                </div>
+
+                <button id="menu-toggle" class="md:hidden p-2 text-[#1a1a1a]">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="fixed inset-0 bg-white z-[2000] flex flex-col p-8 space-y-6 md:hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-3xl font-extrabold text-[#88113b]">ALSCO</span>
+                    <button id="menu-close" class="text-4xl text-[#1a1a1a]">&times;</button>
+                </div>
+                <a href="index.html" class="text-2xl font-bold text-[#1a1a1a]">Home</a>
+                <a href="about.html" class="text-2xl font-bold text-[#1a1a1a]">About Us</a>
+                <a href="events.html" class="text-2xl font-bold text-[#88113b]">Events</a>
+                <a href="publications.html" class="text-2xl font-bold text-[#1a1a1a]">Publications</a>
+                <a href="alstar.html" class="text-2xl font-bold text-[#1a1a1a]">ALSTAR</a>
+                <a href="contact.html" class="text-2xl font-bold text-[#1a1a1a]">Contact Us</a>
+            </div>
+        </nav>
+
+        <section class="content-container px-6 lg:px-0">
+            <div class="text-center mb-12">
+                <div class="mb-6">
+                    <span class="bg-[#88113b] text-white text-[11px] font-black uppercase tracking-[0.15em] px-4 py-1.5 rounded-full shadow-sm">
+                        Explore
+                    </span>
+                </div>
+                <h2 class="text-4xl lg:text-[48px] font-black text-[#1a1a1a] mb-6 leading-[1.05] tracking-tight">
+                    Our <span class="text-[#88113b]">Events</span>
+                </h2>
+                <p class="text-[#4b5563] text-base lg:text-lg mx-auto leading-relaxed font-medium" style="max-width: 650px;">
+                    See what's happening this semester. There’s always something to join.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-16">
+                <button class="filter-pill active" data-filter="all">All Events</button>
+                <button class="filter-pill" data-filter="ALSTAR">ALSTAR First Event</button>
+                <button class="filter-pill" data-filter="LD">Leadership Development</button>
+                <button class="filter-pill" data-filter="COMSERVE">Community Service</button>
+                <button class="filter-pill" data-filter="SW">Student Welfare</button>
+            </div>
+
+            <div id="events-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section class="content-container px-6 lg:px-0">
+            <div class="text-center mb-12">
+                <div class="mb-6">
+                    <span class="bg-[#88113b] text-white text-[11px] font-black uppercase tracking-[0.15em] px-4 py-1.5 rounded-full shadow-sm">
+                        Archive
+                    </span>
+                </div>
+                <h2 class="text-4xl lg:text-[48px] font-black text-[#1a1a1a] mb-6 leading-[1.05] tracking-tight">
+                    Past <span class="text-[#88113b]">Events</span>
+                </h2>
+                <p class="text-[#4b5563] text-base lg:text-lg mx-auto leading-relaxed font-medium" style="max-width: 650px;">
+                    A look back at the incredible moments and events we've hosted.
+                </p>
+            </div>
+
+            <div id="past-events-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Menu Toggle Logic (Synced with index.html)
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => mobileMenu.classList.add('active'));
+        menuClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
+
+        // Page Load Logic
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                const mainContent = document.getElementById('main-content');
+                loadingScreen.style.opacity = '0';
+                mainContent.style.opacity = '1';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1000); 
+        });
+
+        const eventsData = [
+            { title: "Little Notes, Big Smiles", date: "TBC", time: "", category: "SW", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", status: "upcoming", link: "#" },
+            { title: "Sports Festival", date: "13 April 2026 - 15 April 2026", time: "5:00 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://docs.google.com/forms/d/e/1FAIpQLSee-MjSlZAdJ4Cn4iHBtMk0WtqbJj1caYBcdk3Tz9cf7q6yzA/viewform?usp=dialog" },
+            { title: "Leadership Workshop", date: "13 April 2026", time: "5:00 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://docs.google.com/forms/d/e/1FAIpQLSeCTDl1RF7P4K5_SdlU_GsZ6SPs467Ks_1-ozpVcQGVHo8-9A/viewform?usp=publish-editor" },
+            { title: "Decision Making Trials", date: "13 April 2026 & 14 April 2026" , time: "5:30 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://forms.gle/r9JTNaQZGsKbTXdCA" },
+            { title: "Game Show", date: "9 April 2026", time: "5:30 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://forms.gle/a3nC9BiSKmf3bJBJA" },
+            { title: "Friendship Week", date: "7 April 2026 - 9 April 2026", time: "5:30 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://forms.gle/BQwz9qhn9dmVJQiXA" },
+            { title: "Mind Wellness Session", date: "15 April 2026", time: "5:30 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://docs.google.com/forms/d/e/1FAIpQLSc2TRHzljbwXLyXpjWky2NYIdBTIy7HOAi_N9j8TaXbPTg5mA/viewform?usp=dialog" },
+            { title: "E-sports Tournament", date: "15 April 2026 & 16 April 2026", time: "5:30 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://docs.google.com/forms/d/e/1FAIpQLSfiRZ-pIp_OcAbAed-dMyHRSLzHZP9lG_scEKOgFVqT4gjzGA/viewform?usp=header" },
+            { title: "Dress to Impress", date: "7 April 2027", time: "5:15 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://forms.gle/ugdPMynzZm85WuG5A" },
+            { title: "Campus Green", date: "6 April 2026", time: "5:30 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://forms.gle/yjzni855WPP8j7Kf7" },
+            { title: "Teach to Inspire", date: "17 April 2026", time: "5:30 P.M.", category: "ALSTAR", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500", link: "https://docs.google.com/forms/d/e/1FAIpQLSe1BkLQDBg-6j2B0gzViv6qwNiV3XXjT9Gs5IHLyOFN3nJffA/viewform" }
+        ];
+
+        const pastEventsData = [
+            { title: "Lecturer Appreciation Week", date: "26 February 2026", category: "SW", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=500", link: "https://www.instagram.com/p/DWL2I-GEQAE/?img_index=1", status: "completed" },
+            { title: "A-Level Leadership Camp (ALC)", date: "7 February 2026", category: "LD", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=500", link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1", status: "completed" },
+            { title: "ALSTAR First General Meeting", date: "27 January 2026", category: "ALSCO", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=500", link: "https://www.instagram.com/p/DV563smkfkd/?img_index=1", status: "completed" },
+            { title: "January '26 Intake Orientation", date: "19 January 2026", category: "ALSCO", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=500", link: "https://www.instagram.com/p/DTure53EcOg/?img_index=1", status: "completed" },
+            { title: "A Charity Extravaganza (ACE)", date: "17 January 2026", category: "ALSCO", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=500", link: "https://www.instagram.com/p/DTpftXIkQLi/?img_index=1", status: "completed" },
+            { title: "July '25 Installation Night", date: "8 January 2026", category: "ALSCO", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=500", link: "https://www.instagram.com/p/DTXjonXEc8U/?img_index=1", status: "completed" },
+        ];
+
+        function createEventCard(event) {
+            const isUpcoming = event.status === "upcoming";
+            const isCompleted = event.status === "completed";
+            
+            const dateSpacingClass = isCompleted ? "mb-2" : "mb-0"; 
+            const titleSpacingClass = isCompleted ? "mb-4" : "mt-0 mb-2";
+
+            return `
+                <div class="event-card">
+                    <div class="w-full relative h-48 bg-gray-50 rounded-[1.8rem] mb-5 overflow-hidden">
+                        <img src="${event.img}" class="w-full h-full object-cover">
+                        <div class="absolute top-3 left-3 bg-[#88113b] text-white text-[11px] font-black px-3 py-1 rounded-full uppercase">${event.category || 'Event'}</div>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 ${dateSpacingClass}">
+                        <span class="text-[12px] font-black text-[#88113b] uppercase tracking-wider">${event.date}</span>
+                        ${event.time && !isCompleted ? `<span class="text-[12px] font-black text-slate-700 uppercase tracking-wider">${event.time}</span>` : ''}
+                    </div>
+                    
+                    <div class="min-h-[3rem] flex items-center justify-center ${titleSpacingClass} px-2">
+                        <h3 class="text-xl md:text-2xl font-bold text-[#1a1a1a] leading-none line-clamp-2">
+                            ${event.title}
+                        </h3>
+                    </div>
+
+                    <div class="mt-auto">
+                        ${isUpcoming ? `
+                            <button class="pill-button bg-gray-200 text-gray-500 cursor-not-allowed opacity-70" disabled>
+                                Coming Soon
+                            </button>
+                        ` : isCompleted ? `
+                            <a href="${event.link}" target="_blank" class="pill-button bg-gray-800 text-white hover:bg-black">
+                                View Highlights
+                            </a>
+                        ` : `
+                            <a href="${event.link || '#'}" target="_blank" class="pill-button bg-[#88113b] text-white">
+                                Register Now
+                            </a>
+                        `}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderEvents(filter = 'all') {
+            const activeGrid = document.getElementById('events-grid');
+            activeGrid.innerHTML = '';
+            const filteredData = filter === 'all' ? eventsData : eventsData.filter(e => e.category === filter);
+            filteredData.forEach(event => {
+                activeGrid.insertAdjacentHTML('beforeend', createEventCard(event));
+            });
+        }
+
+        function renderPastEvents() {
+            const pastGrid = document.getElementById('past-events-grid');
+            pastGrid.innerHTML = '';
+            pastEventsData.forEach(event => {
+                pastGrid.insertAdjacentHTML('beforeend', createEventCard(event));
+            });
+        }
+
+        const filterButtons = document.querySelectorAll('.filter-pill');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderEvents(btn.getAttribute('data-filter'));
+            });
+        });
+
+        renderEvents();
+        renderPastEvents();
+    </script>
+</body>
+</html>
